@@ -1,0 +1,44 @@
+---
+- name: Playbook para instalacion de FileServer (CentOS)
+  hosts: fileserver #Se indica el grupo que contiene al fileserver en el inventario
+  become: yes #Necesario para elevar el privilegio
+
+  tasks:
+
+  - name: Instlacion de Servidor NFS
+    ansible.builtin.dnf: #el modulo dnf se enceuntra en ansible core
+      name: "{{ paquete }}" #Variable paquete la cual esta definida en /invetories/group_vars
+      state: present #Se asegura que este presente, en caso contrario, lo instala
+
+  - name: Asegurar que el servicio este inciado y habilitado
+    ansible.builtin.systemd_service:
+      name: "{{ servicio }}"
+      enabled: true
+      state: started
+  
+  - name: Asegurar que el puerto del Firewall este abierto en 2049 (NFS)
+    ansible.posix.firewalld:
+      port: "{{ puerto }}" #La variable abre el puerto 2049, utilizado por NFS
+      permanent: true
+      state: enabled
+      permanent: true
+      immediate: true
+    notify: Recargar_Firewall
+
+  - name: Habilitar tambien en el firewall, NFS como servicio
+    ansible.posix.firewalld:
+      service: "{{ servicio_firewall}}" #La variable definida, corresponde a nfs
+      state: enabled  
+      permanent: true
+      immediate: true
+    notify: Recargar_Firewall
+
+
+
+  handlers:
+
+    - name: Recargar_Firewall
+      ansible.builtin.command: firewall-cmd --reload  
+
+
+

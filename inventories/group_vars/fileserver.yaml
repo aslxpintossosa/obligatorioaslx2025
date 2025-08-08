@@ -1,0 +1,5 @@
+---
+paquete: nfs-utils
+servicio: nfs-utils
+puerto: 2049/tcp
+servicio_firewall: nfs

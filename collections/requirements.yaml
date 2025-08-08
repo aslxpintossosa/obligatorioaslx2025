@@ -1,0 +1,4 @@
+---
+collections:
+  - name: ansible.posix
+    vesrion: 1.5.4
