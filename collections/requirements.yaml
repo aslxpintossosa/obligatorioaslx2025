@@ -2,3 +2,6 @@
 collections:
   - name: ansible.posix
     vesrion: 1.5.4
+
+  - name: community.general
+    version: 10.7.2    
