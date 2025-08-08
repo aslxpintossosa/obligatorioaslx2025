@@ -33,12 +33,32 @@
       immediate: true
     notify: Recargar_Firewall
 
+  - name: Existe el directorio /var/nfs_shared
+    ansible.builtin.file:
+      path: /var/nfs_shared
+      state: directory
+      owner: nobody
+      group: nobody
+      mode: '0777'
+    register: resultado #Guarda el resultado para ser mostado luego por el modulo a continuacion
+
+  - name: Mostrar Resultado
+    ansible.builtin.debug:
+      msg: "{{ resultado.diff.after }}"
+    when: resultado.changed
+
+  - name: Compartir Carpeta nfs_shared
+    ansible.builtin.lineinfile:
+      path: /etc/exports
+      line: '/var/nfs_shared *(rw,sync,no_subtree_check)'
+    notify: exportarfs
 
 
   handlers:
 
     - name: Recargar_Firewall
       ansible.builtin.command: firewall-cmd --reload  
-
-
+    
+    - name: exportarfs
+      ansible.builtin.command: exportfs -r
 
