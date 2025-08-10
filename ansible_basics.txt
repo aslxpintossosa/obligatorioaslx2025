@@ -1,0 +1,35 @@
+Las siguientes preguntas se encuentran respondidas en un archivo dentro del repositorio llamado “ansible_basics.md”
+
+1.	¿Qué es Ansible? Mencione dos actividades que se puedan hacer con Ansible 
+
+Ansible es una herramienta de automatización de código abierto  que se utiliza para reducir complejidad  y ser ejecutada en varios tipos de ambientes.
+Esta herramienta puede automatizar tareas de todo tipo en un sistema.
+Sus características principales:
+-	No tiene Agente (No es necesario tener clientes instalados para su ejecución)
+-	Simple
+-	Escalable
+-	Idempotencia y Flexibilidad (Si el sistema está en el estado deseado, este no será alterado)
+
+2.	¿Qué es un Playbook de Ansible? 
+
+Los playbooks son un sistema de Ansible que sirven para la configuración , implementación y aplicación compleja de tareas en sistemas.
+Estas son repetibles, reutilizables y sencillas.
+características principales:
+-	Declarar configuraciones
+-	Orquestar pasos de procesos de manera ordenada
+-	Ejecutar tareas
+
+3.	¿Qué información contiene un inventario de Ansible?
+
+Un archivo de inventario en asnible contiene información principalmente de los hosts que ansible maneja.
+Contiene también agrupaciones o grupos, donde los host y diferentes sistemas son agrupados por algún motivo en particular para poder luego correr playbooks específicos para esos grupos.
+Estos grupos, pueden a la vez ser parte de otros grupos más grandes.
+
+4.	Explique que es un módulo de Ansible y dé un ejemplo. 
+
+Un módulo es un script que sirve para ejecutar una tarea especifica, utilizado para comandos ad-hoc o playbooks, los módulos de ansible tienen una amplia gama de tareas que pueden realizar. 
+Existen también ampliaciones a los módulos “core” que trae incluidos ansibles  los cuales pueden ser descargados adicionalmente.
+
+5.	¿Qué ventajas tiene Ansible sobre otros métodos de automatización?
+
+Si bien es objetivo en que puede ser mejor comparado con otros métodos, hay algunas cosas que se destacan como que no necesita cliente para funcionar, es escalable, es sencillo de configurar y ejecutar 
