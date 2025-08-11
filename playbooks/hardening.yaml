@@ -15,6 +15,15 @@
     ansible.builtin.apt:
       name: fail2ban
       state: present
+  
+  - name: Configuracion Fail 2 BAN # Se asegura que la configuracion de Fail2Ban sea la correcta para SSH
+    ansible.builtin.template:
+      src: ../templates/jail.local
+      dest: /etc/fail2ban/jail.local
+      owner: root
+      mode: u=rw,g=r,o=r
+    notify: Reiniciar_F2B
+
 
   - name: Iniciar y habilitar Fail2BAN
     ansible.builtin.service:
@@ -35,6 +44,14 @@
       insertafter: '^PasswordAuthentication'
       line: PasswordAuthentication no
     notify: Reinicio_Daemon_SSH
+  
+  - name: Modificar linea de archivo 50-cloud-init
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config.d/50-cloud-init.conf
+      regexp: '^PasswordAuthentication yes'
+      state: absent  
+    notify: Reinicio_Daemon_SSH
+
 
   - name: Asegurarse que UFW Este habilitado y ejecutandose bloqueando trafico incoming
     community.general.ufw:
@@ -63,7 +80,14 @@
       state: restarted
 
   - name: Recargar_UFW
-    ansible.builtin.command: ufw reload
+    ansible.builtin.service:
+      name: ufw
+      state: restarted
+
+  - name: Reiniciar_F2B
+    ansible.builtin.service:
+      name: fail2ban
+      state: restarted
     
 
       
