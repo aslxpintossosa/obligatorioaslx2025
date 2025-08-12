@@ -3,6 +3,9 @@
 ***********************************************************
 INTRODUCCION
 En este archivo se encuentran instrucciones e información correspondiente a la ejecución del obligatorio 2025 del Taller de Administrador de Servidores LINUX, carrera Analista en Infraestructura Informática, Universidad ORT.
+
+⚠️Una version detallada incluyenda pruebas de ejecucion de comandos e informacion util puede ser encontrada en formato PDF en la raiz del repositorio con el nombre Sosa_Pintos_Obligatorio_TSLX.pdf
+
 ***************************************************************
 **********CONFIGURACION LLAVES SSH************************
 ***************************************************************
