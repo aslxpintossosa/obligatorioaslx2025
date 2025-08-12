@@ -113,7 +113,7 @@ ansible-playbook -i inventories/inventory.ini playbooks/hardening.yaml -K
 
 Referencia de Tareas realizadas por cada Playbook:
 hardening.yaml
-
+```
 -Actualizar Paquetes (Handler que reinicia el sistema si se actualiza algun paquete)
 -Habilita UFW, bloquea todo trafico entrante (reiniciara el servicio en caso necesario)
 -Habilita UFW Servicio SSH (reiniciara el servicio en caso necesario)
@@ -126,7 +126,7 @@ nfs_setup.yaml
 -Cambia el firewall para que permita trafico de puerto 2049 y/o servicio nfs
 -crea el directorio /var/nfs_shared con usuario nobody y grupo nobody con permisos 777
 -Comparte el directorio /var/nfs_shared agregandolo en /etc/exports, si este cambia, activa un handler para que se ejecute exportfs -r
-
+```
 
 
 
