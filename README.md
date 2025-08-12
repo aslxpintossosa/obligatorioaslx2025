@@ -100,6 +100,7 @@ IMPORTANTE: Antes de ejecutar el siguiente playbook, asegurarse que clave public
 
 ansible-playbook -i inventories/inventory.ini playbooks/hardening.yaml -K
 
+```
 ___________________            _-_
 \__(==========/_=_/   ____.---'---`---._____
             \_ \      \----.__ANSIBLE_.----/
@@ -107,3 +108,4 @@ ___________________            _-_
           __,--`.`---'..'-_
          /____  USS-ASLX ||
               `--.____,-'
+```
