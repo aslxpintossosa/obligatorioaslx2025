@@ -8,11 +8,11 @@ En este archivo se encuentran instrucciones e información correspondiente a la 
 ***************************************************************
 Para utilizar ansible, desde la maquina bastion, primero deben configurarse las llaves para el acceso SSH, a continuación un ejemplo para CentOS 9 Stream:
 
-Creacion de la llave
+Creación de la llave
 
 ssh-keygen
 
-elegir opcion por defecto
+elegir opción por defecto
 colocarle un password
 
 ssh-copy-id {IP}
@@ -44,15 +44,15 @@ para ello utilizaremos comando
 
 git clone https://github.com/aslxpintossosa/obligatorioaslx2025.git
 
-(Puede ser posible Tambien descargar el zip desde el repositorio o clonarlo a su propia cuenta de GitHub)
+(Puede ser posible También descargar el zip desde el repositorio o clonarlo a su propia cuenta de GitHub)
 
 (La creación de la estructura del repositorio, esta detallada en el archivo de documentación PDF en este mismo repositorio)
 
-NOTA - Se debe de satisfacer los requerimientos ANTES de ejecutar los playbooks, ya que no todos los modulos se encuentran en ansible-core
-el repositorio cuenta ya con la coleccion requerimientos predefinidos, pero debe ejecutarse antes el siguiente comando para instalar los modulos adicionales
-Esto  detallara en la seccion de clonacion
+NOTA - Se debe de satisfacer los requerimientos ANTES de ejecutar los playbooks, ya que no todos los módulos se encuentran en ansible-core
+el repositorio cuenta ya con la colección requerimientos predefinidos, pero debe ejecutarse antes el siguiente comando para instalar los módulos adicionales
+Esto  detallara en la sección de clonación
 
-Modulos adicionales instalados utilizando el archivo incluido
+Módulos adicionales instalados utilizando el archivo incluido
 
 ansible.posix   (Version 1.5.4)
 community.general   (Version 10.7.2)
@@ -83,13 +83,15 @@ En caso de ejecutar comandos add-hoc, esto es posible, se adjuntan 3 ejemplos
 1 - Listar usuarios de servidor ubuntu01
 ansible ubuntu01 -i inventories/inventory.ini -m shell -a "cut -d: -f1 /etc/passwd"
 2 – Mostrar el uso de memoria en todos los servidores
-ansible linux -i inventories/inventory.ini -m shell -a "cut -d: -f1 /etc/passwd"
+ansible linux -i inventories/inventory.ini -m shell -a "free -h"
 3 – Verificar que Chrony este instalado y funcionando en servidores centos
 ansible centos01 -i inventories/inventory.ini -m shell -a "systemctl status chronyd"
 
 ************************************************************
 ******Ejecución de Tareas Automatizadas ANSIBLE*************
 ************************************************************
+NOTA: Durante la ejecución de los playbooks, si se utilizan las versiones especificadas en este archivo, se pueden llegar a observar algunas advertencias (Warnings) sobre la compatibilidad entre estas, esto no afecta en nada la ejecución de estos playbooks, pero de querer resolverlo, se pude optar por agregar la versión para que el warning desaparezca o bien revisar la documentación de versión de las colecciones extra.
+
 Para ejecutar los playbooks utilizando los comandos mostrados a continuación, usuario debe estar parado en el directorio raíz del repositorio en la consola del bastion
 ~/obligaorio2025/
 ansible-playbook -i inventories/inventory.ini playbooks/nfs_setup.yaml -K
@@ -97,3 +99,11 @@ ansible-playbook -i inventories/inventory.ini playbooks/nfs_setup.yaml -K
 IMPORTANTE: Antes de ejecutar el siguiente playbook, asegurarse que clave publica haya sido copiada para mantener access al server (ssh-copy-id {IP})
 
 ansible-playbook -i inventories/inventory.ini playbooks/hardening.yaml -K
+
+___________________            _-_
+\__(==========/_=_/   ____.---'---`---._____
+            \_ \      \----.__ANSIBLE_.----/
+              \ \     /  /    `-_-'
+          __,--`.`---'..'-_
+         /____  USS-ASLX ||
+              `--.____,-'
